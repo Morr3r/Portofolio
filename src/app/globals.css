@@ -1121,6 +1121,67 @@ a {
   margin: 0 auto;
 }
 
+.scroll-section {
+  position: relative;
+  isolation: isolate;
+  scroll-margin-top: 104px;
+  transform-origin: 50% 44%;
+}
+
+.scroll-section > .section-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.section-transition-rail {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.section-transition-rail::before,
+.section-transition-rail::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.section-transition-rail::before {
+  top: 0;
+  width: min(980px, calc(100% - 40px));
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--mint) 34%, transparent),
+    color-mix(in srgb, var(--amber) 24%, transparent),
+    transparent
+  );
+  opacity: 0.72;
+}
+
+.section-transition-rail::after {
+  top: -1px;
+  width: min(760px, 72%);
+  height: 72px;
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--mint) 12%, transparent), transparent),
+    linear-gradient(180deg, color-mix(in srgb, var(--cyan) 10%, transparent), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  opacity: 0.64;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-section {
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
 .topbar {
   position: fixed;
   top: 18px;

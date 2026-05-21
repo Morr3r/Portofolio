@@ -2,6 +2,7 @@
 
 import {
   type CSSProperties,
+  type ReactNode,
   type SyntheticEvent,
   useCallback,
   useEffect,
@@ -9,7 +10,13 @@ import {
   useState
 } from "react";
 import Image, { type StaticImageData } from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type HTMLMotionProps,
+  type Variants
+} from "framer-motion";
 import {
   ArrowUp,
   ArrowUpRight,
@@ -530,6 +537,62 @@ const bjbTwoSidedCertificateCount = baseCertificates.filter(
 const preventProtectedPhotoAction = (event: SyntheticEvent) => {
   event.preventDefault();
 };
+
+const sectionRevealVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 58,
+    scale: 0.985,
+    filter: "blur(10px)"
+  },
+  visible: (index: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      delay: Math.min(index * 0.025, 0.12),
+      duration: 0.72,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  })
+};
+
+type ScrollSectionProps = HTMLMotionProps<"section"> & {
+  children: ReactNode;
+  transitionIndex?: number;
+};
+
+function ScrollSection({
+  children,
+  className,
+  style,
+  transitionIndex = 0,
+  ...props
+}: ScrollSectionProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.section
+      {...props}
+      className={clsx("scroll-section", className)}
+      custom={transitionIndex}
+      initial={shouldReduceMotion ? false : "hidden"}
+      variants={shouldReduceMotion ? undefined : sectionRevealVariants}
+      viewport={{ once: false, amount: 0.2, margin: "-8% 0px -18% 0px" }}
+      whileInView={shouldReduceMotion ? undefined : "visible"}
+      style={
+        {
+          ...style,
+          "--section-index": transitionIndex
+        } as CSSProperties
+      }
+    >
+      <span className="section-transition-rail" aria-hidden="true" />
+      {children}
+    </motion.section>
+  );
+}
 
 export function PortfolioExperience() {
   const [isBooting, setIsBooting] = useState(true);
@@ -1052,7 +1115,11 @@ export function PortfolioExperience() {
         </div>
       </section>
 
-      <section className="metrics-band" aria-label={text.professionalMetrics}>
+      <ScrollSection
+        className="metrics-band"
+        aria-label={text.professionalMetrics}
+        transitionIndex={1}
+      >
         <div className="metrics-grid section-inner">
           {metrics.map((metric) => (
             <motion.article
@@ -1067,9 +1134,9 @@ export function PortfolioExperience() {
             </motion.article>
           ))}
         </div>
-      </section>
+      </ScrollSection>
 
-      <section className="capability-section">
+      <ScrollSection className="capability-section" transitionIndex={2}>
         <div className="section-inner split-layout">
           <div className="section-heading">
             <span className="eyebrow">
@@ -1111,9 +1178,9 @@ export function PortfolioExperience() {
             ))}
           </div>
         </div>
-      </section>
+      </ScrollSection>
 
-      <section id="projects" className="projects-section">
+      <ScrollSection id="projects" className="projects-section" transitionIndex={3}>
         <div className="section-inner">
           <div className="section-heading wide-heading">
             <span className="eyebrow">
@@ -1195,9 +1262,9 @@ export function PortfolioExperience() {
             </AnimatePresence>
           </div>
         </div>
-      </section>
+      </ScrollSection>
 
-      <section id="experience" className="experience-section">
+      <ScrollSection id="experience" className="experience-section" transitionIndex={4}>
         <div className="section-inner split-layout reverse-on-mobile">
           <div className="timeline-panel">
             {experiences.map((experience, index) => (
@@ -1258,9 +1325,9 @@ export function PortfolioExperience() {
             </motion.article>
           </AnimatePresence>
         </div>
-      </section>
+      </ScrollSection>
 
-      <section id="skills" className="skills-section">
+      <ScrollSection id="skills" className="skills-section" transitionIndex={5}>
         <div className="section-inner split-layout">
           <div className="skill-orbit-shell">
             <div
@@ -1379,9 +1446,9 @@ export function PortfolioExperience() {
             </AnimatePresence>
           </div>
         </div>
-      </section>
+      </ScrollSection>
 
-      <section id="certificates" className="certificates-section">
+      <ScrollSection id="certificates" className="certificates-section" transitionIndex={6}>
         <div className="section-inner certificates-layout">
           <div className="certificates-header">
             <div className="section-heading wide-heading">
@@ -1636,9 +1703,9 @@ export function PortfolioExperience() {
             </div>
           </div>
         </div>
-      </section>
+      </ScrollSection>
 
-      <section className="education-section">
+      <ScrollSection className="education-section" transitionIndex={7}>
         <div className="section-inner education-grid">
           <div className="section-heading compact-heading">
             <span className="eyebrow">
@@ -1665,9 +1732,9 @@ export function PortfolioExperience() {
             </article>
           </div>
         </div>
-      </section>
+      </ScrollSection>
 
-      <section id="contact" className="contact-section">
+      <ScrollSection id="contact" className="contact-section" transitionIndex={8}>
         <div className="section-inner contact-layout">
           <div className="section-heading">
             <span className="eyebrow">
@@ -1707,7 +1774,7 @@ export function PortfolioExperience() {
             </a>
           </div>
         </div>
-      </section>
+      </ScrollSection>
 
       <footer className="site-footer">
         <div className="section-inner footer-inner">
