@@ -1,0 +1,10 @@
+﻿node_modules/
+.next/
+out/
+dist/
+deploy/
+deploy.tar.gz
+output/
+.env
+.env.local
+dev-server-codex*.log
