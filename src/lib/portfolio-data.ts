@@ -1,10 +1,89 @@
-export type Metric = {
-  value: string;
-  label: string;
-  detail: string;
+import type { StaticImageData } from "next/image";
+import pasPhoto from "@/assets/PasPhoto.jpg";
+import pasPhotoTransparent from "@/assets/PasPhoto2-transparent.png";
+import pasPhotoTwo from "@/assets/PasPhoto2-alt.jpg";
+import certificateItSecurityFront from "@/assets/Sertifikat Pembelajaran IT Security - Security Awareness Batch 1 conv/Sertifikat Pembelajaran IT Security - Security Awareness Batch 1 conv 1.jpeg";
+import certificateItSecurityBack from "@/assets/Sertifikat Pembelajaran IT Security - Security Awareness Batch 1 conv/Sertifikat Pembelajaran IT Security - Security Awareness Batch 1 conv 2.jpeg";
+import certificateStrategicProjectFront from "@/assets/Sertifikat Pembelajaran Strategic Project Management for Banking Digital Transformation conv/Sertifikat Pembelajaran Strategic Project Management for Banking Digital Transformation conv 1.jpeg";
+import certificateStrategicProjectBack from "@/assets/Sertifikat Pembelajaran Strategic Project Management for Banking Digital Transformation conv/Sertifikat Pembelajaran Strategic Project Management for Banking Digital Transformation conv 2.jpeg";
+import certificateApupptFront from "@/assets/SertifikatAPUPPT conv/SertifikatAPUPPT conv 1.jpeg";
+import certificateApupptBack from "@/assets/SertifikatAPUPPT conv/SertifikatAPUPPT conv 2.jpeg";
+import certificateGratifikasiFront from "@/assets/SertifikatGratifikasi conv/SertifikatGratifikasi conv 1.jpeg";
+import certificateGratifikasiBack from "@/assets/SertifikatGratifikasi conv/SertifikatGratifikasi conv 2.jpeg";
+import certificateJabarmaya from "@/assets/SertifikatJabarmaya_AfghanyYogaswara conv/SertifikatJabarmaya_AfghanyYogaswara conv 1.jpeg";
+import certificatePusatBahasa from "@/assets/SertifikatPusatBahasa_AfghanyYogaswara conv/SertifikatPusatBahasa_AfghanyYogaswara conv 1.jpeg";
+
+export type LocaleCode = "en" | "id";
+
+export type SectionId =
+  | "intro"
+  | "about"
+  | "skills"
+  | "projects"
+  | "experience"
+  | "contact";
+
+export type InteractiveObjectId =
+  | "room"
+  | "poster"
+  | "whiteboard"
+  | "laptop"
+  | "arcade"
+  | "phone";
+
+export type PortfolioProject = {
+  id: string;
+  title: string;
+  period: string;
+  description: string;
+  responsibilities: string[];
+  stack: string[];
+  liveUrl: string;
+  githubUrl: string;
+  previewLabel: string;
 };
 
-export type Experience = {
+export type PortfolioProfile = {
+  name: string;
+  role: string;
+  intro: string;
+  email: string;
+  phone: string;
+  location: string;
+  social: {
+    github: string;
+    linkedin: string;
+  };
+};
+
+export type PortfolioSection = {
+  id: SectionId;
+  title: string;
+  eyebrow: string;
+  description: string;
+};
+
+export type InteractiveObjectConfig = {
+  id: InteractiveObjectId;
+  section: SectionId;
+  label: string;
+  hint: string;
+  accent: string;
+};
+
+export type ProfilePhoto = {
+  label: string;
+  src: StaticImageData;
+};
+
+export type CertificateAsset = {
+  title: string;
+  issuer: string;
+  label: string;
+  src: StaticImageData;
+};
+
+export type WorkExperience = {
   role: string;
   company: string;
   location: string;
@@ -14,295 +93,108 @@ export type Experience = {
   tags: string[];
 };
 
-export type Project = {
-  id: string;
-  title: string;
-  period: string;
-  category: "Mobile Banking" | "Payments" | "Account Opening" | "Communication";
-  summary: string;
-  role: string;
-  responsibilities: string[];
-  stack: string[];
-  impact: string;
-};
-
-export type SkillGroup = {
-  title: string;
-  description: string;
-  skills: string[];
-};
-
-export const profile = {
+export const portfolioProfile: PortfolioProfile = {
   name: "Afghany Yogaswara",
-  headline: "Frontend and Mobile Developer",
-  location: "Bandung, Indonesia",
+  role: "Mobile Developer / Frontend Developer",
+  intro:
+    "Software Engineering graduate of SMKN 13 Bandung with diverse work experience over the past five years. My educational background in software engineering has given me a deep understanding of technology and strong problem-solving skills. I am curious, adaptable, agile, eager to learn, and ready to work in a new environment.",
   email: "afghany.yogaswaraa@gmail.com",
   phone: "+62 895-3658-71245",
-  linkedin: "https://linkedin.com/in/afghany-yogaswara",
-  linkedinLabel: "linkedin.com/in/afghany-yogaswara",
-  summary:
-    "Software Engineering with five years of diverse work experience and a strong focus on frontend and mobile interfaces. Currently building banking features for DIGI bank bjb with Flutter, Dart, API integration, real-time flows, and production release discipline.",
-  availability:
-    "Open to frontend, mobile, and UI implementation roles that need product-minded execution."
+  location: "Bandung, Indonesia",
+  social: {
+    github: "https://github.com/Morr3r",
+    linkedin: "https://afghanyportofolio.vercel.app"
+  }
 };
 
-export const metrics: Metric[] = [
+export const profilePhotos: ProfilePhoto[] = [
+  { label: "Formal profile photo", src: pasPhoto },
+  { label: "Transparent profile photo", src: pasPhotoTransparent },
+  { label: "Alternate profile photo", src: pasPhotoTwo }
+];
+
+export const certificateAssets: CertificateAsset[] = [
   {
-    value: "5+",
-    label: "Years of work experience",
-    detail: "Cross-functional experience from software, hospitality, language, and retail roles."
+    title: "IT Security - Security Awareness Batch 1",
+    issuer: "bank bjb",
+    label: "Front",
+    src: certificateItSecurityFront
   },
   {
-    value: "8",
-    label: "Banking product features",
-    detail: "DIGI bank bjb work across QRIS, E-Samsat, BI-RTGS, savings, and onboarding flows."
+    title: "IT Security - Security Awareness Batch 1",
+    issuer: "bank bjb",
+    label: "Back",
+    src: certificateItSecurityBack
   },
   {
-    value: "10+",
-    label: "Frontend tools",
-    detail: "Flutter, Dart, React Native, Next.js, React.js, JavaScript, HTML, CSS, Tailwind, and Figma."
+    title: "Strategic Project Management for Banking Digital Transformation",
+    issuer: "bank bjb",
+    label: "Front",
+    src: certificateStrategicProjectFront
   },
   {
-    value: "2",
-    label: "Professional languages",
-    detail: "Native Indonesian and full professional English proficiency."
+    title: "Strategic Project Management for Banking Digital Transformation",
+    issuer: "bank bjb",
+    label: "Back",
+    src: certificateStrategicProjectBack
+  },
+  {
+    title: "APU PPT",
+    issuer: "bank bjb",
+    label: "Front",
+    src: certificateApupptFront
+  },
+  {
+    title: "APU PPT",
+    issuer: "bank bjb",
+    label: "Back",
+    src: certificateApupptBack
+  },
+  {
+    title: "Gratifikasi",
+    issuer: "bank bjb",
+    label: "Front",
+    src: certificateGratifikasiFront
+  },
+  {
+    title: "Gratifikasi",
+    issuer: "bank bjb",
+    label: "Back",
+    src: certificateGratifikasiBack
+  },
+  {
+    title: "Frontend Developer Internship",
+    issuer: "PT Sarana Insan Muda Selaras (Jabar Maya)",
+    label: "Certificate",
+    src: certificateJabarmaya
+  },
+  {
+    title: "English Translator and Public Relations Administration",
+    issuer: "Pusat Bahasa dan Multibudaya Universitas Airlangga",
+    label: "Certificate",
+    src: certificatePusatBahasa
   }
 ];
 
-export const experiences: Experience[] = [
-  {
-    role: "Mobile Developer",
-    company: "Bank BJB",
-    location: "Bandung",
-    period: "Nov 2024 - Present",
-    summary:
-      "Building and maintaining mobile banking features for one of Indonesia's largest Regional Development Banks.",
-    highlights: [
-      "Developed responsive mobile application flows using Flutter and Dart.",
-      "Translated UI/UX designs into clean, functional, and maintainable application code.",
-      "Integrated RESTful APIs, WebSocket connections, and real-time data synchronization.",
-      "Implemented scalable state management with GetX.",
-      "Supported SIT, UAT, and production deployment phases."
-    ],
-    tags: ["Flutter", "Dart", "GetX", "REST API", "WebSocket", "SIT/UAT/PROD"]
-  },
-  {
-    role: "Frontend Developer",
-    company: "PT Sarana Insan Muda Selaras (Jabar Maya)",
-    location: "Bandung",
-    period: "Jul 2019 - Sep 2019",
-    summary:
-      "Designed and implemented web interfaces for a broadband internet service provider.",
-    highlights: [
-      "Designed website layouts, color systems, typography, and visual graphics.",
-      "Improved navigation and usability across key pages.",
-      "Ensured responsive presentation across desktop, tablet, and smartphone views.",
-      "Tested usability issues and resolved interface problems."
-    ],
-    tags: ["Frontend", "Responsive UI", "HTML", "CSS", "Usability"]
-  },
-  {
-    role: "English Translator and Public Relations Administration",
-    company: "Pusat Bahasa dan Multibudaya Universitas Airlangga",
-    location: "Surabaya",
-    period: "Aug 2023 - Dec 2023",
-    summary:
-      "Translated and proofread English communication materials with professional tone, accuracy, and audience awareness.",
-    highlights: [
-      "Edited translations for fluency, grammar, and accuracy.",
-      "Researched terminology to preserve domain-specific meaning.",
-      "Communicated with clients to align expectations and writing style."
-    ],
-    tags: ["English", "Proofreading", "Research", "Client Communication"]
-  },
-  {
-    role: "Server and Operations Roles",
-    company: "Karnivor, Hachiya, Makopi, AR Komunika",
-    location: "Bandung",
-    period: "Feb 2020 - Sep 2024",
-    summary:
-      "Built service discipline, inventory awareness, customer communication, and pressure-tested operational habits.",
-    highlights: [
-      "Handled customer-facing service with accuracy and professionalism.",
-      "Coordinated with kitchen, cashier, and management teams during active operations.",
-      "Maintained stock awareness, product recommendations, and repair service intake."
-    ],
-    tags: ["Customer Service", "Operations", "Communication", "Pressure Handling"]
-  }
-];
-
-export const projects: Project[] = [
-  {
-    id: "referral-branch",
-    title: "Referral Code and Branch Code for Tandamata Rencana",
-    period: "Apr 2026 - May 2026",
-    category: "Account Opening",
-    summary:
-      "Added referral tracking and branch-based account opening support to the Tandamata Rencana flow in DIGI bank bjb.",
-    role: "Frontend Mobile Developer",
-    responsibilities: [
-      "Developed the frontend flow for Referral Code and Branch Code fields.",
-      "Added optional input fields into the Tandamata Rencana account opening form.",
-      "Connected referral input behavior to the digital onboarding flow.",
-      "Adjusted the UI so the process stayed clear and consistent for customers."
-    ],
-    stack: ["Flutter", "Dart", "GetX", "REST API", "Banking UI"],
-    impact: "Improved referral tracking and branch-oriented account opening without adding friction."
-  },
-  {
-    id: "esamsat-code",
-    title: "Generate Payment Code for West Java Vehicle Tax",
-    period: "Jan 2026 - Mar 2026",
-    category: "Payments",
-    summary:
-      "Built an E-Samsat webview and native mobile payment code flow for easier vehicle tax payments.",
-    role: "Frontend Mobile Developer",
-    responsibilities: [
-      "Developed Generate Kode Bayar E-Samsat flow in DIGI bank bjb.",
-      "Built native mobile UI/UX and supported the web frontend side.",
-      "Implemented input pages for vehicle data, NIK, and chassis number.",
-      "Created inquiry, payment summary, success, countdown, copy code, and Pay Now redirect states.",
-      "Handled five-year expired tax, DIGI Inbox, and bjb Paylater identification states."
-    ],
-    stack: ["Flutter", "Dart", "WebView", "REST API", "Payment Flow"],
-    impact: "Reduced payment journey complexity for digital West Java vehicle tax transactions."
-  },
-  {
-    id: "bi-rtgs",
-    title: "Transfer BI-RTGS Enhancement",
-    period: "Nov 2025 - Dec 2025",
-    category: "Mobile Banking",
-    summary:
-      "Implemented a secure high-value interbank transfer experience for eligible bjb Prioritas customers.",
-    role: "Frontend Mobile Developer",
-    responsibilities: [
-      "Developed a new Transfer via RTGS menu inside the DIGI bank bjb app.",
-      "Configured access rules for eligible bjb Prioritas customers.",
-      "Implemented validation for customer status, source account, limits, operational hours, and fees.",
-      "Built confirmation, PIN validation, success, receipt sharing, and receipt saving flows."
-    ],
-    stack: ["Flutter", "Dart", "GetX", "Validation", "Secure Flow"],
-    impact: "Delivered a controlled high-value transfer flow with clear eligibility and transaction states."
-  },
-  {
-    id: "tandamata-rencana",
-    title: "Tandamata Rencana Promotional Enhancement",
-    period: "Sep 2025 - Oct 2025",
-    category: "Account Opening",
-    summary:
-      "Enhanced promotional program handling and account status behavior inside the Tandamata Rencana feature.",
-    role: "Frontend Mobile Developer",
-    responsibilities: [
-      "Aligned the promotional interface with UI/UX best practices.",
-      "Implemented Program dropdown options for Qurban ASN and Non Program.",
-      "Controlled Close Rencanaku and Postpone My Goals behavior for active program participants.",
-      "Adjusted account status logic for postponed accounts."
-    ],
-    stack: ["Flutter", "Dart", "GetX", "UI Logic", "Form UX"],
-    impact: "Made product rules easier to understand while preserving operational constraints."
-  },
-  {
-    id: "other-savings",
-    title: "Webview Other Savings Info",
-    period: "Jun 2025 - Jul 2025",
-    category: "Mobile Banking",
-    summary:
-      "Improved access to multiple savings accounts through a dynamic webview and floating entry point.",
-    role: "Frontend Mobile Developer",
-    responsibilities: [
-      "Developed a floating Other Savings button inside the Financial Management section.",
-      "Integrated a dynamic WebView for categorized savings information.",
-      "Displayed total balance, blocked amount, and withdrawable balance.",
-      "Built tabbed mini statement and transaction history actions.",
-      "Kept the entry point visible during scroll to improve discoverability."
-    ],
-    stack: ["Flutter", "Dart", "WebView", "Tabbed UI", "Responsive UX"],
-    impact: "Improved navigation and visibility for customers managing multiple savings products."
-  },
-  {
-    id: "t-samsat",
-    title: "T-Samsat Registration Enhancement",
-    period: "Mar 2025 - May 2025",
-    category: "Payments",
-    summary:
-      "Enhanced T-Samsat registration with flexible registration types and stronger data handling.",
-    role: "Frontend Mobile Developer",
-    responsibilities: [
-      "Added One-Time and Periodic registration options.",
-      "Implemented dynamic Block Period Type fields for Daily, Weekly, and Monthly choices.",
-      "Improved license plate input validation with automatic uppercase formatting.",
-      "Added a receipt summary table with key registration details and total transaction amount."
-    ],
-    stack: ["Flutter", "Dart", "Dynamic Forms", "Validation", "Receipt UI"],
-    impact: "Made registration more flexible while improving validation consistency."
-  },
-  {
-    id: "qris-indomaret",
-    title: "QRIS Indomaret Payment",
-    period: "Dec 2024 - Mar 2025",
-    category: "Payments",
-    summary:
-      "Designed and built QRIS Indomaret payment flows for seamless QR code transactions in DIGI bank bjb.",
-    role: "Frontend Mobile Developer",
-    responsibilities: [
-      "Designed the UI/UX from scratch in Figma.",
-      "Implemented responsive and modular frontend code in Flutter.",
-      "Handled QR generation, scanning, and real-time transaction status updates.",
-      "Integrated secure request-response flows with internal REST APIs.",
-      "Collaborated with backend and QA teams through UAT, staging, and production release."
-    ],
-    stack: ["Figma", "Flutter", "Dart", "REST API", "QRIS", "Real-time Status"],
-    impact: "Delivered an end-to-end merchant payment feature aligned with QRIS and internal banking standards."
-  },
-  {
-    id: "marketing-email",
-    title: "IELTS and NAT-Test Marketing Email Documentation",
-    period: "Nov 2023 - Dec 2023",
-    category: "Communication",
-    summary:
-      "Created English documentation for institutional marketing email templates with clear, persuasive, and culturally appropriate language.",
-    role: "English Documentation Contributor",
-    responsibilities: [
-      "Applied formal correspondence and rhetoric techniques.",
-      "Used equivalence and adaptation to preserve intent and promotional value.",
-      "Adjusted register, tone, and word choice for institutional stakeholders."
-    ],
-    stack: ["English Writing", "Localization", "Documentation", "Audience Strategy"],
-    impact: "Improved clarity and professionalism for multilingual marketing communication."
-  }
-];
-
-export const skillGroups: SkillGroup[] = [
-  {
-    title: "Frontend Engineering",
-    description:
-      "Interfaces that are responsive, maintainable, and easy to reason about from design to release.",
-    skills: ["Next.js", "React.js", "React Native", "JavaScript", "HTML", "CSS", "Tailwind"]
-  },
-  {
-    title: "Mobile Product",
-    description:
-      "Banking-grade mobile flows with structured state, validation, and real-time transaction awareness.",
-    skills: ["Flutter", "Dart", "GetX", "WebView", "REST API", "WebSocket"]
-  },
-  {
-    title: "Design Systems",
-    description:
-      "Strong UI judgment for layout, visual hierarchy, interaction states, and handoff quality.",
-    skills: ["Figma", "UI/UX", "Responsive Design", "Prototyping", "Usability Testing"]
-  },
-  {
-    title: "Delivery Tools",
-    description:
-      "Comfortable working with development pipelines, collaboration tooling, and production release phases.",
-    skills: ["GitHub", "Jenkins", "Navicat", "SIT", "UAT", "Production Release"]
-  },
-  {
-    title: "Creative Stack",
-    description:
-      "Visual and audio tooling that supports fast ideation, content production, and polished presentation.",
-    skills: ["Canva", "Adobe Photoshop", "Adobe Premiere", "FL Studio", "Corel Draw"]
-  }
+export const portfolioSkills = [
+  "Flutter",
+  "Dart",
+  "React Native",
+  "Next.js",
+  "React.js",
+  "JavaScript",
+  "HTML",
+  "CSS",
+  "Tailwind",
+  "Figma UI/UX",
+  "GitHub",
+  "Jenkins",
+  "Navicat",
+  "Canva",
+  "Adobe Photoshop",
+  "Adobe Premiere",
+  "FL Studio",
+  "Corel Draw"
 ];
 
 export const education = [
@@ -323,19 +215,449 @@ export const languages = [
   "English - Full professional proficiency"
 ];
 
-export type LocaleCode = "id" | "en";
+export const workExperiences: WorkExperience[] = [
+  {
+    role: "Mobile Developer",
+    company: "Bank BJB",
+    location: "Kota Bandung",
+    period: "Nov 2024 - Present",
+    summary:
+      "Developing and maintaining mobile banking features for DIGI bank bjb using Flutter, Dart, API integration, WebSocket synchronization, and production release practices.",
+    highlights: [
+      "Developing and maintaining mobile applications using Flutter and Dart.",
+      "Translating UI/UX designs into clean, functional, and responsive code.",
+      "Integrating RESTful APIs and WebSocket connections for real-time data synchronization.",
+      "Implementing scalable state management with GetX.",
+      "Participating in SIT, UAT, and PROD deployment phases."
+    ],
+    tags: ["Flutter", "Dart", "GetX", "REST API", "WebSocket"]
+  },
+  {
+    role: "Server",
+    company: "Karnivor",
+    location: "Kota Bandung",
+    period: "Mar 2024 - Sep 2024",
+    summary:
+      "Handled customer-facing restaurant service with attention to order accuracy, presentation, communication, and table readiness.",
+    highlights: [
+      "Welcomed guests professionally upon arrival.",
+      "Presented menus, daily specials, and recommended items.",
+      "Took food and beverage orders accurately.",
+      "Delivered orders while checking accuracy and presentation.",
+      "Coordinated payment readiness and table cleanup."
+    ],
+    tags: ["Customer Service", "Communication", "Operations"]
+  },
+  {
+    role: "English Translator and Public Relations Administration",
+    company: "Pusat Bahasa dan Multibudaya Universitas Airlangga",
+    location: "Kota Surabaya",
+    period: "Aug 2023 - Dec 2023",
+    summary:
+      "Translated and proofread Indonesian-English materials while managing communication details and audience expectations.",
+    highlights: [
+      "Edited translations for fluency, grammar, and accuracy.",
+      "Researched technical terminology and context.",
+      "Communicated with clients about expectations, preferences, and style.",
+      "Translated written texts with contextual understanding."
+    ],
+    tags: ["English", "Translation", "Proofreading", "Public Relations"]
+  },
+  {
+    role: "Kitchen Staff",
+    company: "Hachiya",
+    location: "Kota Bandung",
+    period: "Jan 2023 - Jun 2023",
+    summary:
+      "Supported fast-paced kitchen operations for Japanese-themed food service, focusing on preparation quality and timing.",
+    highlights: [
+      "Prepared ingredients and assisted quick stir-fry cooking.",
+      "Maintained ingredient quality and cleanliness.",
+      "Managed cooking time for timely service.",
+      "Kept kitchen and equipment clean."
+    ],
+    tags: ["Food Preparation", "Operations", "Discipline"]
+  },
+  {
+    role: "Server",
+    company: "Makopi",
+    location: "Kota Bandung",
+    period: "Jan 2022 - Dec 2022",
+    summary:
+      "Delivered warm cafe service while coordinating orders and customer comfort during daily operations.",
+    highlights: [
+      "Delivered friendly and professional service.",
+      "Took orders and served food and beverages promptly.",
+      "Managed tables and customer comfort.",
+      "Communicated with the kitchen team to keep orders accurate."
+    ],
+    tags: ["Service", "Cafe Operations", "Teamwork"]
+  },
+  {
+    role: "Shopkeeper",
+    company: "AR Komunika",
+    location: "Kota Bandung",
+    period: "Feb 2020 - Sep 2021",
+    summary:
+      "Assisted retail customers with mobile phones, accessories, SIM cards, repairs, inventory, and product recommendations.",
+    highlights: [
+      "Answered customer inquiries and recommended products.",
+      "Sold mobile phones, accessories, SIM cards, and related devices.",
+      "Processed phone repair intake and explained estimated repair timelines.",
+      "Monitored stock availability and reported low inventory."
+    ],
+    tags: ["Retail", "Sales", "Inventory", "Repair Intake"]
+  },
+  {
+    role: "Frontend Developer",
+    company: "PT Sarana Insan Muda Selaras (Jabar Maya)",
+    location: "Kota Bandung",
+    period: "Jul 2019 - Sep 2019",
+    summary:
+      "Designed and implemented responsive web interface work for a broadband internet service provider.",
+    highlights: [
+      "Designed website layout, color schemes, typography, and graphics.",
+      "Improved website navigation and usability.",
+      "Ensured responsive display across desktop, tablet, and smartphone.",
+      "Tested usability issues and fixed interface problems."
+    ],
+    tags: ["Frontend", "HTML", "CSS", "Responsive UI"]
+  }
+];
 
-export type PortfolioContent = {
-  profile: typeof profile;
-  metrics: Metric[];
-  experiences: Experience[];
-  projects: Project[];
-  skillGroups: SkillGroup[];
-  education: typeof education;
-  languages: string[];
+export const portfolioProjects: PortfolioProject[] = [
+  {
+    id: "donat-dankau-pos",
+    title: "Development of Donat Dankau Point of Sale (POS) Application",
+    period: "Jun 2026 - Jul 2026",
+    description:
+      "Developed an end-to-end mobile POS application for Donat Dankau to support sales transactions, product and inventory management, cashier shifts, operational expenses, and business reporting.",
+    responsibilities: [
+      "Developed a responsive POS application using React Native and Expo, optimized for smartphone and tablet layouts.",
+      "Implemented product and inventory management features, including product CRUD, stock adjustments, minimum order quantities, and automatic stock deduction and restoration for sales and refunds.",
+      "Built the cashier transaction flow, including product search, variants and toppings, customer and reseller pricing, shopping cart management, multiple payment methods, and invoice generation.",
+      "Built and integrated REST APIs using FastAPI and PostgreSQL for authentication, role-based access, transactions, inventory, expenses, promotions, and sales reports.",
+      "Added application security and reliability mechanisms, including JWT authentication, secure session storage, server-side price calculation, idempotent transactions, database migrations, and automated API testing."
+    ],
+    stack: ["React Native", "Expo", "FastAPI", "PostgreSQL", "REST API", "JWT"],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewLabel: "Mobile POS system"
+  },
+  {
+    id: "referral-branch-code",
+    title: "Referral Code and Branch Code for Tandamata Rencana",
+    period: "Apr 2026 - May 2026",
+    description:
+      "Developed referral tracking and optional branch code input for the Tandamata Rencana account opening flow in DIGI bank bjb.",
+    responsibilities: [
+      "Developed the frontend flow for Referral Code and Branch Code fields.",
+      "Added optional input fields into the account opening form.",
+      "Integrated referral input behavior with the digital onboarding flow.",
+      "Supported branch-based product management through Branch Code handling.",
+      "Adjusted the mobile UI to keep the account opening process clear and consistent."
+    ],
+    stack: ["Flutter", "Dart", "GetX", "REST API", "Banking UI"],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewLabel: "DIGI onboarding"
+  },
+  {
+    id: "esamsat-payment-code",
+    title: "Generate Payment Code for West Java Vehicle Tax",
+    period: "Jan 2026 - Mar 2026",
+    description:
+      "Built the E-Samsat WebView and native mobile payment code flow for easier digital vehicle tax payments.",
+    responsibilities: [
+      "Developed Generate Kode Bayar E-Samsat flow in DIGI bank bjb.",
+      "Built native mobile UI/UX and supported web frontend side.",
+      "Implemented input pages for vehicle plate color, police number, NIK, and chassis number.",
+      "Created inquiry, payment summary, success, countdown, copy code, and Pay Now redirect states.",
+      "Handled expired tax, DIGI Inbox display, and bjb Paylater transaction identification."
+    ],
+    stack: ["Flutter", "Dart", "WebView", "REST API", "Payment Flow"],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewLabel: "Vehicle tax payment"
+  },
+  {
+    id: "bi-rtgs",
+    title: "Transfer BI-RTGS Enhancement",
+    period: "Nov 2025 - Dec 2025",
+    description:
+      "Developed a secure high-value interbank transfer experience for eligible bjb Prioritas customers.",
+    responsibilities: [
+      "Developed a new Transfer via RTGS menu.",
+      "Configured access rules for eligible bjb Prioritas customers.",
+      "Implemented validation for customer status, source account, transaction limit, operational hours, and fees.",
+      "Supported transaction journal, narrative, email notification, and channel flagging requirements.",
+      "Created confirmation, PIN validation, success page, receipt sharing, and receipt saving flows."
+    ],
+    stack: ["Flutter", "Dart", "GetX", "Validation", "Secure Flow"],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewLabel: "High-value transfer"
+  },
+  {
+    id: "tandamata-rencana",
+    title: "Tandamata Rencana Promotional Enhancement",
+    period: "Sep 2025 - Oct 2025",
+    description:
+      "Enhanced promotional program behavior and account status logic within the Tandamata Rencana feature.",
+    responsibilities: [
+      "Aligned the promotional interface with UI/UX best practices.",
+      "Implemented Program dropdown options for Qurban ASN and Non Program.",
+      "Controlled Close Rencanaku and Postpone My Goals behavior for active program participants.",
+      "Configured postponed account status logic.",
+      "Supported branch continuation flow for postponed accounts."
+    ],
+    stack: ["Flutter", "Dart", "GetX", "UI Logic", "Form UX"],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewLabel: "Savings program UX"
+  },
+  {
+    id: "other-savings-webview",
+    title: "WebView Other Savings Info",
+    period: "Jun 2025 - Jul 2025",
+    description:
+      "Improved user access to multiple savings accounts through a dynamic WebView and floating entry point.",
+    responsibilities: [
+      "Developed a floating Other Savings button in Financial Management.",
+      "Integrated a dynamic WebView for categorized savings information.",
+      "Displayed total balance, blocked amount, and withdrawable balance.",
+      "Built tabbed mini statement and transaction history actions.",
+      "Kept the floating entry point visible during scroll."
+    ],
+    stack: ["Flutter", "Dart", "WebView", "Tabbed UI", "Responsive UX"],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewLabel: "Savings WebView"
+  },
+  {
+    id: "t-samsat",
+    title: "T-Samsat Frontend Enhancement",
+    period: "Mar 2025 - May 2025",
+    description:
+      "Enhanced the T-Samsat registration feature with flexible registration types and stronger data handling.",
+    responsibilities: [
+      "Added flexible Registration Type options.",
+      "Enabled One-Time and Periodic registration modes.",
+      "Implemented dynamic Block Period Type fields for Daily, Weekly, and Monthly options.",
+      "Improved license plate input validation with automatic uppercase conversion.",
+      "Added a receipt summary table with key details and total transaction amount."
+    ],
+    stack: ["Flutter", "Dart", "Dynamic Forms", "Validation", "Receipt UI"],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewLabel: "Registration UX"
+  },
+  {
+    id: "qris-indomaret",
+    title: "QRIS Indomaret Payment",
+    period: "Dec 2024 - Mar 2025",
+    description:
+      "Designed and implemented an end-to-end QRIS Indomaret payment flow for DIGI bank bjb.",
+    responsibilities: [
+      "Designed the UI/UX from scratch using Figma.",
+      "Implemented responsive and modular Flutter frontend code.",
+      "Handled QR generation, scanning, and real-time transaction status updates.",
+      "Integrated request-response flows with internal REST APIs.",
+      "Collaborated with backend and QA teams through UAT, staging, and production releases.",
+      "Aligned the feature with QRIS and internal bank security protocols."
+    ],
+    stack: ["Figma", "Flutter", "Dart", "REST API", "QRIS"],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewLabel: "Merchant payment"
+  },
+  {
+    id: "ielts-nat-email",
+    title: "IELTS and NAT-Test Marketing Email Documentation",
+    period: "Nov 2023 - Dec 2023",
+    description:
+      "Created English marketing email documentation using linguistics, rhetoric, localization, and audience awareness.",
+    responsibilities: [
+      "Applied formal correspondence and rhetoric techniques.",
+      "Used equivalence and adaptation to preserve intent and promotional value.",
+      "Adjusted register, tone, and word choices for institutional stakeholders."
+    ],
+    stack: ["English Writing", "Localization", "Documentation", "Audience Strategy"],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewLabel: "Language project"
+  }
+];
+
+export const portfolioSections: Record<SectionId, PortfolioSection> = {
+  intro: {
+    id: "intro",
+    eyebrow: "Welcome",
+    title: "Explore Afghany's room",
+    description:
+      "Hover the glowing objects, click one, and the camera will move through the workspace to reveal each portfolio section."
+  },
+  about: {
+    id: "about",
+    eyebrow: "About Me",
+    title: "Software engineering foundation with practical product delivery experience.",
+    description:
+      "A five-year work journey across mobile development, frontend interfaces, translation, service, operations, and retail has shaped a developer who can communicate clearly and work under pressure."
+  },
+  skills: {
+    id: "skills",
+    eyebrow: "Skill Board",
+    title: "Mobile, frontend, UI/UX, and delivery tools.",
+    description:
+      "The skill set combines Flutter and Dart mobile development, React and Next.js frontend fundamentals, UI/UX handoff, and production delivery tools."
+  },
+  projects: {
+    id: "projects",
+    eyebrow: "Project Terminal",
+    title: "Mobile, banking, POS, and communication projects.",
+    description:
+      "Selected projects from point-of-sale operations, mobile banking, payment flows, account opening, savings features, QRIS payment, and English documentation."
+  },
+  experience: {
+    id: "experience",
+    eyebrow: "Experience",
+    title: "Work history and certificate gallery.",
+    description:
+      "Professional experience from Bank BJB, Jabar Maya, Universitas Airlangga, hospitality operations, and retail, supported by the certificate assets in this project."
+  },
+  contact: {
+    id: "contact",
+    eyebrow: "Contact",
+    title: "Available for frontend, mobile, and UI implementation work.",
+    description:
+      "Use the contact links to reach Afghany for frontend, mobile, product UI, and implementation roles."
+  }
 };
 
-export const portfolioContent: Record<LocaleCode, PortfolioContent> = {
+export const interactiveObjects: InteractiveObjectConfig[] = [
+  {
+    id: "poster",
+    section: "about",
+    label: "About frames",
+    hint: "Open About Me",
+    accent: "#9b5cff"
+  },
+  {
+    id: "whiteboard",
+    section: "skills",
+    label: "Skill whiteboard",
+    hint: "Open Skills",
+    accent: "#4f8cff"
+  },
+  {
+    id: "laptop",
+    section: "projects",
+    label: "Project laptop",
+    hint: "Open Projects",
+    accent: "#6ee7ff"
+  },
+  {
+    id: "arcade",
+    section: "experience",
+    label: "Experience arcade",
+    hint: "Open Experience",
+    accent: "#ffb86b"
+  },
+  {
+    id: "phone",
+    section: "contact",
+    label: "Rubik's Cube",
+    hint: "Open Contact",
+    accent: "#f6d34d"
+  }
+];
+
+export const contactLinks = [
+  {
+    label: "Email",
+    value: portfolioProfile.email,
+    href: `mailto:${portfolioProfile.email}`
+  },
+  {
+    label: "Phone",
+    value: portfolioProfile.phone,
+    href: `tel:${portfolioProfile.phone.replaceAll(" ", "").replaceAll("-", "")}`
+  },
+  {
+    label: "GitHub",
+    value: "github.com/Morr3r",
+    href: portfolioProfile.social.github
+  },
+  {
+    label: "Portfolio",
+    value: "afghanyportofolio.vercel.app",
+    href: "https://afghanyportofolio.vercel.app"
+  }
+];
+
+export const profile = {
+  name: portfolioProfile.name,
+  headline: portfolioProfile.role,
+  location: portfolioProfile.location,
+  email: portfolioProfile.email,
+  phone: portfolioProfile.phone,
+  linkedin: portfolioProfile.social.linkedin,
+  linkedinLabel: "afghanyportofolio.vercel.app",
+  summary: portfolioProfile.intro,
+  availability: portfolioSections.contact.description
+};
+
+export const metrics = [
+  {
+    value: "5+",
+    label: "Years of work experience",
+    detail: "Software, banking, service, language, hospitality, and retail experience."
+  },
+  {
+    value: "9",
+    label: "Selected projects",
+    detail: "Mobile POS, DIGI bank bjb features, and English documentation work."
+  },
+  {
+    value: "18",
+    label: "Tools and skills",
+    detail: "Mobile, frontend, UI/UX, delivery, and creative tools."
+  },
+  {
+    value: "10",
+    label: "Certificate images",
+    detail: "All certificate assets from the local assets folder are included."
+  }
+];
+
+export const experiences = workExperiences;
+
+export const projects = portfolioProjects.map((project) => ({
+  id: project.id,
+  title: project.title,
+  period: project.period,
+  category: "Portfolio" as const,
+  summary: project.description,
+  role: "Frontend Mobile Developer",
+  responsibilities: project.responsibilities,
+  stack: project.stack,
+  impact: project.previewLabel
+}));
+
+export const skillGroups = [
+  {
+    title: "Main Skills",
+    description: "Primary mobile, frontend, UI/UX, and delivery tools from the resume.",
+    skills: portfolioSkills.slice(0, 13)
+  },
+  {
+    title: "Additional Skills",
+    description: "Creative production tools listed in the resume.",
+    skills: portfolioSkills.slice(13)
+  }
+];
+
+export const portfolioContent = {
   en: {
     profile,
     metrics,
@@ -346,300 +668,12 @@ export const portfolioContent: Record<LocaleCode, PortfolioContent> = {
     languages
   },
   id: {
-    profile: {
-      name: "Afghany Yogaswara",
-      headline: "Pengembang Frontend dan Mobile",
-      location: "Bandung, Indonesia",
-      email: "afghany.yogaswaraa@gmail.com",
-      phone: "+62 895-3658-71245",
-      linkedin: "https://linkedin.com/in/afghany-yogaswara",
-      linkedinLabel: "linkedin.com/in/afghany-yogaswara",
-      summary:
-        "Lulusan Rekayasa Perangkat Lunak dengan pengalaman kerja lintas bidang selama lima tahun dan fokus kuat pada antarmuka frontend serta mobile. Saat ini mengembangkan fitur perbankan untuk DIGI bank bjb menggunakan Flutter, Dart, integrasi API, alur real-time, dan disiplin rilis produksi.",
-      availability:
-        "Terbuka untuk peran frontend, mobile, dan implementasi UI yang membutuhkan eksekusi berorientasi produk."
-    },
-    metrics: [
-      {
-        value: "5+",
-        label: "Tahun pengalaman kerja",
-        detail:
-          "Pengalaman lintas fungsi dari bidang perangkat lunak, hospitality, bahasa, dan retail."
-      },
-      {
-        value: "8",
-        label: "Fitur produk perbankan",
-        detail:
-          "Pengembangan DIGI bank bjb untuk QRIS, E-Samsat, BI-RTGS, tabungan, dan alur pembukaan rekening."
-      },
-      {
-        value: "10+",
-        label: "Tools frontend",
-        detail:
-          "Flutter, Dart, React Native, Next.js, React.js, JavaScript, HTML, CSS, Tailwind, dan Figma."
-      },
-      {
-        value: "2",
-        label: "Bahasa profesional",
-        detail: "Bahasa Indonesia sebagai penutur asli dan Bahasa Inggris tingkat profesional penuh."
-      }
-    ],
-    experiences: [
-      {
-        role: "Pengembang Mobile",
-        company: "Bank BJB",
-        location: "Bandung",
-        period: "Nov 2024 - Sekarang",
-        summary:
-          "Membangun dan memelihara fitur mobile banking untuk salah satu Bank Pembangunan Daerah terbesar di Indonesia.",
-        highlights: [
-          "Mengembangkan alur aplikasi mobile yang responsif menggunakan Flutter dan Dart.",
-          "Menerjemahkan desain UI/UX menjadi kode aplikasi yang bersih, fungsional, dan mudah dipelihara.",
-          "Mengintegrasikan RESTful API, koneksi WebSocket, dan sinkronisasi data real-time.",
-          "Menerapkan manajemen state yang skalabel dengan GetX.",
-          "Mendukung fase SIT, UAT, dan deployment produksi."
-        ],
-        tags: ["Flutter", "Dart", "GetX", "REST API", "WebSocket", "SIT/UAT/PROD"]
-      },
-      {
-        role: "Frontend Developer",
-        company: "PT Sarana Insan Muda Selaras (Jabar Maya)",
-        location: "Bandung",
-        period: "Jul 2019 - Sep 2019",
-        summary:
-          "Merancang dan mengimplementasikan antarmuka web untuk penyedia layanan internet broadband.",
-        highlights: [
-          "Merancang layout website, sistem warna, tipografi, dan grafis visual.",
-          "Meningkatkan navigasi dan usability pada halaman utama.",
-          "Memastikan tampilan responsif di desktop, tablet, dan smartphone.",
-          "Menguji masalah usability dan menyelesaikan kendala antarmuka."
-        ],
-        tags: ["Frontend", "Responsive UI", "HTML", "CSS", "Usability"]
-      },
-      {
-        role: "Penerjemah Bahasa Inggris dan Administrasi Humas",
-        company: "Pusat Bahasa dan Multibudaya Universitas Airlangga",
-        location: "Surabaya",
-        period: "Agu 2023 - Des 2023",
-        summary:
-          "Menerjemahkan dan menyunting materi komunikasi berbahasa Inggris dengan nada profesional, akurasi, dan pemahaman audiens.",
-        highlights: [
-          "Menyunting terjemahan agar lebih lancar, tepat secara tata bahasa, dan akurat.",
-          "Melakukan riset terminologi untuk menjaga makna khusus sesuai bidangnya.",
-          "Berkomunikasi dengan klien untuk menyelaraskan ekspektasi dan gaya penulisan."
-        ],
-        tags: ["Bahasa Inggris", "Proofreading", "Riset", "Komunikasi Klien"]
-      },
-      {
-        role: "Staf Layanan dan Operasional",
-        company: "Karnivor, Hachiya, Makopi, AR Komunika",
-        location: "Bandung",
-        period: "Feb 2020 - Sep 2024",
-        summary:
-          "Membangun disiplin layanan, kesadaran inventaris, komunikasi pelanggan, dan kebiasaan operasional yang teruji dalam tekanan.",
-        highlights: [
-          "Menangani layanan pelanggan secara akurat dan profesional.",
-          "Berkoordinasi dengan tim dapur, kasir, dan manajemen saat operasional berlangsung.",
-          "Menjaga kesadaran stok, rekomendasi produk, dan proses penerimaan layanan perbaikan."
-        ],
-        tags: ["Layanan Pelanggan", "Operasional", "Komunikasi", "Kerja di Bawah Tekanan"]
-      }
-    ],
-    projects: [
-      {
-        id: "referral-branch",
-        title: "Kode Referral dan Kode Cabang untuk Tandamata Rencana",
-        period: "Apr 2026 - Mei 2026",
-        category: "Account Opening",
-        summary:
-          "Menambahkan pelacakan referral dan dukungan pembukaan rekening berbasis cabang pada alur Tandamata Rencana di DIGI bank bjb.",
-        role: "Frontend Developer Mobile",
-        responsibilities: [
-          "Mengembangkan alur frontend untuk field Kode Referral dan Kode Cabang.",
-          "Menambahkan field input opsional ke formulir pembukaan rekening Tandamata Rencana.",
-          "Menghubungkan perilaku input referral dengan alur digital onboarding.",
-          "Menyesuaikan UI agar proses tetap jelas dan konsisten bagi nasabah."
-        ],
-        stack: ["Flutter", "Dart", "GetX", "REST API", "Banking UI"],
-        impact:
-          "Meningkatkan pelacakan referral dan pembukaan rekening berbasis cabang tanpa menambah friksi."
-      },
-      {
-        id: "esamsat-code",
-        title: "Pembuatan Kode Bayar Pajak Kendaraan Jawa Barat",
-        period: "Jan 2026 - Mar 2026",
-        category: "Payments",
-        summary:
-          "Membangun webview E-Samsat dan alur kode bayar native mobile untuk memudahkan pembayaran pajak kendaraan.",
-        role: "Frontend Developer Mobile",
-        responsibilities: [
-          "Mengembangkan alur Generate Kode Bayar E-Samsat di DIGI bank bjb.",
-          "Membangun UI/UX native mobile dan mendukung sisi frontend web.",
-          "Mengimplementasikan halaman input untuk data kendaraan, NIK, dan nomor rangka.",
-          "Membuat state inquiry, ringkasan pembayaran, sukses, hitung mundur, salin kode, dan redirect Pay Now.",
-          "Menangani state pajak kedaluwarsa lima tahun, DIGI Inbox, dan identifikasi bjb Paylater."
-        ],
-        stack: ["Flutter", "Dart", "WebView", "REST API", "Payment Flow"],
-        impact:
-          "Mengurangi kompleksitas perjalanan pembayaran untuk transaksi pajak kendaraan Jawa Barat secara digital."
-      },
-      {
-        id: "bi-rtgs",
-        title: "Peningkatan Transfer BI-RTGS",
-        period: "Nov 2025 - Des 2025",
-        category: "Mobile Banking",
-        summary:
-          "Mengimplementasikan pengalaman transfer antarbank bernilai besar yang aman untuk nasabah bjb Prioritas yang memenuhi syarat.",
-        role: "Frontend Developer Mobile",
-        responsibilities: [
-          "Mengembangkan menu baru Transfer via RTGS di dalam aplikasi DIGI bank bjb.",
-          "Mengatur aturan akses untuk nasabah bjb Prioritas yang memenuhi syarat.",
-          "Mengimplementasikan validasi status nasabah, rekening sumber, limit, jam operasional, dan biaya.",
-          "Membangun alur konfirmasi, validasi PIN, sukses, berbagi resi, dan simpan resi."
-        ],
-        stack: ["Flutter", "Dart", "GetX", "Validation", "Secure Flow"],
-        impact:
-          "Menghadirkan alur transfer bernilai besar yang terkendali dengan status kelayakan dan transaksi yang jelas."
-      },
-      {
-        id: "tandamata-rencana",
-        title: "Peningkatan Promosi Tandamata Rencana",
-        period: "Sep 2025 - Okt 2025",
-        category: "Account Opening",
-        summary:
-          "Meningkatkan penanganan program promosi dan perilaku status rekening di dalam fitur Tandamata Rencana.",
-        role: "Frontend Developer Mobile",
-        responsibilities: [
-          "Menyelaraskan antarmuka promosi dengan praktik terbaik UI/UX.",
-          "Mengimplementasikan opsi dropdown Program untuk Qurban ASN dan Non Program.",
-          "Mengendalikan perilaku Close Rencanaku dan Postpone My Goals untuk peserta program aktif.",
-          "Menyesuaikan logika status rekening untuk rekening yang ditunda."
-        ],
-        stack: ["Flutter", "Dart", "GetX", "UI Logic", "Form UX"],
-        impact:
-          "Membuat aturan produk lebih mudah dipahami sambil tetap menjaga batasan operasional."
-      },
-      {
-        id: "other-savings",
-        title: "Webview Informasi Tabungan Lainnya",
-        period: "Jun 2025 - Jul 2025",
-        category: "Mobile Banking",
-        summary:
-          "Meningkatkan akses ke beberapa rekening tabungan melalui webview dinamis dan entry point mengambang.",
-        role: "Frontend Developer Mobile",
-        responsibilities: [
-          "Mengembangkan tombol mengambang Other Savings di dalam bagian Financial Management.",
-          "Mengintegrasikan WebView dinamis untuk informasi tabungan berkategori.",
-          "Menampilkan total saldo, nominal terblokir, dan saldo yang dapat ditarik.",
-          "Membangun aksi tab mini statement dan riwayat transaksi.",
-          "Menjaga entry point tetap terlihat saat scroll untuk meningkatkan discoverability."
-        ],
-        stack: ["Flutter", "Dart", "WebView", "Tabbed UI", "Responsive UX"],
-        impact:
-          "Meningkatkan navigasi dan visibilitas bagi nasabah yang mengelola beberapa produk tabungan."
-      },
-      {
-        id: "t-samsat",
-        title: "Peningkatan Registrasi T-Samsat",
-        period: "Mar 2025 - Mei 2025",
-        category: "Payments",
-        summary:
-          "Meningkatkan registrasi T-Samsat dengan tipe registrasi yang fleksibel dan penanganan data yang lebih kuat.",
-        role: "Frontend Developer Mobile",
-        responsibilities: [
-          "Menambahkan opsi registrasi One-Time dan Periodic.",
-          "Mengimplementasikan field Block Period Type dinamis untuk pilihan Daily, Weekly, dan Monthly.",
-          "Meningkatkan validasi input pelat nomor dengan format huruf besar otomatis.",
-          "Menambahkan tabel ringkasan resi dengan detail registrasi utama dan total nominal transaksi."
-        ],
-        stack: ["Flutter", "Dart", "Dynamic Forms", "Validation", "Receipt UI"],
-        impact:
-          "Membuat registrasi lebih fleksibel sekaligus meningkatkan konsistensi validasi."
-      },
-      {
-        id: "qris-indomaret",
-        title: "Pembayaran QRIS Indomaret",
-        period: "Des 2024 - Mar 2025",
-        category: "Payments",
-        summary:
-          "Merancang dan membangun alur pembayaran QRIS Indomaret untuk transaksi QR code yang mulus di DIGI bank bjb.",
-        role: "Frontend Developer Mobile",
-        responsibilities: [
-          "Merancang UI/UX dari awal di Figma.",
-          "Mengimplementasikan kode frontend yang responsif dan modular di Flutter.",
-          "Menangani pembuatan QR, pemindaian, dan pembaruan status transaksi secara real-time.",
-          "Mengintegrasikan alur request-response yang aman dengan REST API internal.",
-          "Berkolaborasi dengan tim backend dan QA melalui UAT, staging, dan rilis produksi."
-        ],
-        stack: ["Figma", "Flutter", "Dart", "REST API", "QRIS", "Real-time Status"],
-        impact:
-          "Menghadirkan fitur pembayaran merchant end-to-end yang selaras dengan QRIS dan standar perbankan internal."
-      },
-      {
-        id: "marketing-email",
-        title: "Dokumentasi Email Marketing IELTS dan NAT-Test",
-        period: "Nov 2023 - Des 2023",
-        category: "Communication",
-        summary:
-          "Membuat dokumentasi Bahasa Inggris untuk template email marketing institusional dengan bahasa yang jelas, persuasif, dan sesuai budaya.",
-        role: "Kontributor Dokumentasi Bahasa Inggris",
-        responsibilities: [
-          "Menerapkan teknik korespondensi formal dan retorika.",
-          "Menggunakan ekuivalensi dan adaptasi untuk menjaga maksud serta nilai promosi.",
-          "Menyesuaikan register, nada, dan pilihan kata untuk pemangku kepentingan institusional."
-        ],
-        stack: ["English Writing", "Localization", "Documentation", "Audience Strategy"],
-        impact:
-          "Meningkatkan kejelasan dan profesionalisme komunikasi marketing multibahasa."
-      }
-    ],
-    skillGroups: [
-      {
-        title: "Rekayasa Frontend",
-        description:
-          "Antarmuka yang responsif, mudah dipelihara, dan mudah dipahami sejak desain hingga rilis.",
-        skills: ["Next.js", "React.js", "React Native", "JavaScript", "HTML", "CSS", "Tailwind"]
-      },
-      {
-        title: "Produk Mobile",
-        description:
-          "Alur mobile berstandar perbankan dengan state terstruktur, validasi, dan kesadaran transaksi real-time.",
-        skills: ["Flutter", "Dart", "GetX", "WebView", "REST API", "WebSocket"]
-      },
-      {
-        title: "Sistem Desain",
-        description:
-          "Penilaian UI yang kuat untuk layout, hierarki visual, state interaksi, dan kualitas handoff.",
-        skills: ["Figma", "UI/UX", "Responsive Design", "Prototyping", "Usability Testing"]
-      },
-      {
-        title: "Tools Delivery",
-        description:
-          "Terbiasa bekerja dengan pipeline pengembangan, tools kolaborasi, dan fase rilis produksi.",
-        skills: ["GitHub", "Jenkins", "Navicat", "SIT", "UAT", "Production Release"]
-      },
-      {
-        title: "Creative Stack",
-        description:
-          "Tools visual dan audio yang mendukung ideasi cepat, produksi konten, dan presentasi yang rapi.",
-        skills: ["Canva", "Adobe Photoshop", "Adobe Premiere", "FL Studio", "Corel Draw"]
-      }
-    ],
-    education: [
-      {
-        title: "Sastra Inggris",
-        school: "Universitas Terbuka",
-        period: "Sep 2023 - Sekarang"
-      },
-      {
-        title: "Rekayasa Perangkat Lunak",
-        school: "SMKN 13 Bandung",
-        period: "Sep 2017 - Mei 2020"
-      }
-    ],
-    languages: [
-      "Bahasa Indonesia - Penutur asli",
-      "Bahasa Inggris - Kemampuan profesional penuh"
-    ]
+    profile,
+    metrics,
+    experiences,
+    projects,
+    skillGroups,
+    education,
+    languages
   }
 };
